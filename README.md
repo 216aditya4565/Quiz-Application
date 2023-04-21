@@ -18,7 +18,8 @@ A Java Project for a Quiz Application which takes a multiple choice quiz  pertai
 ![image](https://user-images.githubusercontent.com/31154710/233547744-ccdf4636-75e3-48a1-b5ae-0f2fc1229fb7.png)
 
 # Final page showing the score!
-![image](https://user-images.githubusercontent.com/31154710/233547777-e0c426a6-8a22-4992-826b-9a528543aa5d.png)
+![image](https://user-images.githubusercontent.com/31154710/233694544-22887c16-52ff-4cda-857e-10627cca47dd.png)
+
 
 
 
