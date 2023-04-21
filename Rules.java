@@ -1,6 +1,7 @@
 package quiz.application;
 
 import javax.swing.*;
+//Color class is present in awt package
 import java.awt.*;
 import java.awt.event.*;
 
@@ -8,13 +9,14 @@ public class Rules extends JFrame implements ActionListener{
 
     String name;
     JButton start, back;
-    
+
+    //Using Rules Constructor
     Rules(String name) {
         this.name = name;
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
         
-        JLabel heading = new JLabel("Welcome " + name + " to Simple Minds");
+        JLabel heading = new JLabel("Welcome " + name + " to the Quiz App");
         heading.setBounds(50, 20, 700, 30);
         heading.setFont(new Font("Viner Hand ITC", Font.BOLD, 28));
         heading.setForeground(new Color(30, 144, 254));
@@ -25,14 +27,11 @@ public class Rules extends JFrame implements ActionListener{
         rules.setFont(new Font("Tahoma", Font.PLAIN, 16));
         rules.setText(
             "<html>"+ 
-                "1. You are trained to be a programmer and not a story teller, answer point to point" + "<br><br>" +
-                "2. Do not unnecessarily smile at the person sitting next to you, they may also not know the answer" + "<br><br>" +
-                "3. You may have lot of options in life but here all the questions are compulsory" + "<br><br>" +
-                "4. Crying is allowed but please do so quietly." + "<br><br>" +
-                "5. Only a fool asks and a wise answers (Be wise, not otherwise)" + "<br><br>" +
-                "6. Do not get nervous if your friend is answering more questions, may be he/she is doing Jai Mata Di" + "<br><br>" +
-                "7. Brace yourself, this paper is not for the faint hearted" + "<br><br>" +
-                "8. May you know more than what John Snow knows, Good Luck" + "<br><br>" +
+                "1. This is a multiple choice quiz in which you are given four answer choices and you have to select one out of them." + "<br><br>" +
+                "2. All the questions in this paper are related to the Java Programming language" + "<br><br>" +
+                "3. All the questions are compulsory" + "<br><br>" +
+                "4. Do not discuss answers with your friend. Failure to do so is considered academic dishonesty and will be severely penalized." + "<br><br>" +
+                "5. Good Luck!" + "<br><br>" +
             "<html>"
         );
         add(rules);
@@ -55,7 +54,8 @@ public class Rules extends JFrame implements ActionListener{
         setLocation(350, 100);
         setVisible(true);
     }
-    
+
+    //On pressing the Start Button, it will call the Quiz.java file
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == start) {
             setVisible(false);

@@ -27,7 +27,7 @@ public class Quiz extends JFrame implements ActionListener {
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
         
-        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/quiz.jpg"));
+        ImageIcon i1 = new ImageIcon("icons/quiz.jpg");
         JLabel image = new JLabel(i1);
         image.setBounds(0, 0, 1440, 392);
         add(image);
@@ -41,7 +41,8 @@ public class Quiz extends JFrame implements ActionListener {
         question.setBounds(150, 450, 900, 30);
         question.setFont(new Font("Tahoma", Font.PLAIN, 24));
         add(question);
-        
+
+        //Multiple Choice Questions
         questions[0][0] = "Which is used to find and fix bugs in the Java programs.?";
         questions[0][1] = "JVM";
         questions[0][2] = "JDB";
@@ -112,7 +113,8 @@ public class Quiz extends JFrame implements ActionListener {
         answers[7][1] = "Java Archive";
         answers[8][1] = "java.lang.StringBuilder";
         answers[9][1] = "Bytecode is executed by JVM";
-        
+
+        //Radio Buttons for choosing one out of the four options of the MCQ
         opt1 = new JRadioButton();
         opt1.setBounds(170, 520, 700, 30);
         opt1.setBackground(Color.WHITE);
@@ -142,7 +144,8 @@ public class Quiz extends JFrame implements ActionListener {
         groupoptions.add(opt2);
         groupoptions.add(opt3);
         groupoptions.add(opt4);
-        
+
+        //Click next to go to the next question
         next = new JButton("Next");
         next.setBounds(1100, 550, 200, 40);
         next.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -150,7 +153,8 @@ public class Quiz extends JFrame implements ActionListener {
         next.setForeground(Color.WHITE);
         next.addActionListener(this);
         add(next);
-        
+
+        //It will disable two wrong answers of the quiz
         lifeline = new JButton("50-50 Lifeline");
         lifeline.setBounds(1100, 630, 200, 40);
         lifeline.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -158,7 +162,8 @@ public class Quiz extends JFrame implements ActionListener {
         lifeline.setForeground(Color.WHITE);
         lifeline.addActionListener(this);
         add(lifeline);
-        
+
+        //Submit button
         submit = new JButton("Submit");
         submit.setBounds(1100, 710, 200, 40);
         submit.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -174,6 +179,7 @@ public class Quiz extends JFrame implements ActionListener {
     }
     
     public void actionPerformed(ActionEvent ae) {
+        //If user clicks on next, go forward
         if (ae.getSource() == next) {
             repaint();
             opt1.setEnabled(true);
@@ -182,12 +188,15 @@ public class Quiz extends JFrame implements ActionListener {
             opt4.setEnabled(true);
             
             ans_given = 1;
+
+            //If no option is selected, score is 0
             if (groupoptions.getSelection() == null) {
                useranswers[count][0] = "";
             } else {
                 useranswers[count][0] = groupoptions.getSelection().getActionCommand();
             }
-            
+
+            //Since there are eight questions in the quiz, when the count is 8, the next button is disabled and submit is enabled.
             if (count == 8) {
                 next.setEnabled(false);
                 submit.setEnabled(true);
@@ -195,7 +204,9 @@ public class Quiz extends JFrame implements ActionListener {
             
             count++;
             start(count);
-        } else if (ae.getSource() == lifeline) {
+        }
+        //Code logic to disable the options which are wrong using a lifeline i.e. 50-50
+        else if (ae.getSource() == lifeline) {
             if (count == 2 || count == 4 || count == 6 || count == 8 || count == 9) {
                 opt2.setEnabled(false);
                 opt3.setEnabled(false);
@@ -203,7 +214,10 @@ public class Quiz extends JFrame implements ActionListener {
                 opt1.setEnabled(false);
                 opt4.setEnabled(false);
             }
+            //Disable the lifeline option after one lifeline is confirmed
             lifeline.setEnabled(false);
+
+
         } else if (ae.getSource() == submit) {
             ans_given = 1;
             if (groupoptions.getSelection() == null) {
@@ -212,6 +226,7 @@ public class Quiz extends JFrame implements ActionListener {
                 useranswers[count][0] = groupoptions.getSelection().getActionCommand();
             }
 
+            //If the answer is correct, score is increased by 10 points else 0
             for (int i = 0; i < useranswers.length; i++) {
                 if (useranswers[i][0].equals(answers[i][1])) {
                     score += 10;
@@ -223,14 +238,17 @@ public class Quiz extends JFrame implements ActionListener {
             new Score(name, score);
         }
     }
-    
+
+
+    //Timer in 15 seconds
     public void paint(Graphics g) {
         super.paint(g);
         
         String time = "Time left - " + timer + " seconds"; // 15
         g.setColor(Color.RED);
         g.setFont(new Font("Tahoma", Font.BOLD, 25));
-        
+
+        //
         if (timer > 0) { 
             g.drawString(time, 1100, 500);
         } else {
@@ -238,7 +256,9 @@ public class Quiz extends JFrame implements ActionListener {
         }
         
         timer--; // 14
-        
+
+
+
         try {
             Thread.sleep(1000);
             repaint();
@@ -288,7 +308,8 @@ public class Quiz extends JFrame implements ActionListener {
         }
         
     }
-    
+
+
     public void start(int count) {
         qno.setText("" + (count + 1) + ". ");
         question.setText(questions[count][0]);
